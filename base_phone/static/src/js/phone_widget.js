@@ -13,7 +13,7 @@ odoo.define('base_phone.phone_widget', function (require) {
     var field_utils = require('web.field_utils');
 
     // The next line is the super dumb version of the code below:
-    field_utils.format.phone = x => x
+    field_utils.format.phone = field_utils.format.char;
     field_utils.parse.phone = x => x
     // // The following lines do some UI magic around numbers so people can click things automatically,
     // // I haven't got to understand all around this.
