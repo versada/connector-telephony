@@ -59,7 +59,7 @@ def convert_all_phone_fields(self, vals, fields_to_convert):
         if not country:
             country = self.env.user.company_id.country_id
         country_code = False
-        if country:
+        if country and country.code:
             country_code = country.code.upper()
         if loc_vals[field]:
             loc_vals[field] = convert_phone_field(
