@@ -45,17 +45,13 @@ class Fax(fields.Char):
             value, record, validate=validate)
         if res:
             try:
-                res_parse = res
-                try:
-                  res_parse = phonenumbers.parse(res, None)
-                except:
-                  res_parse = phonenumbers.parse(res, region='US')
+                res_parse = phonenumbers.parse(res, None)
                 res = phonenumbers.format_number(
                     res_parse, phonenumbers.PhoneNumberFormat.INTERNATIONAL)
-                no_break_space = '\u00A0'
-                res = res.replace(' ', no_break_space)
             except Exception as e:
-                _logger.error('Failed to validate phone number:', e)
+                _logger.error(
+                    'Failed to validate phone number "%s": %s', res, e)
+            res = res.replace(' ', '')
         return res
 
 
